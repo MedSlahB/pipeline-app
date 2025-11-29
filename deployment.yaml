@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pipeline-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pipeline-app
+  template:
+    metadata:
+      labels:
+        app: pipeline-app
+    spec:
+      containers:
+        - name: pipeline-app
+          image: image-registry.openshift-image-registry.svc:5000/gitops-apps/pipeline-app:latest
+          ports:
+            - containerPort: 8080
